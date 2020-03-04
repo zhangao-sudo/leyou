@@ -1,0 +1,28 @@
+server:
+  port: 8085
+spring:
+  rabbitmq:
+    host: 127.0.0.1
+    username: leyou
+    password: leyou
+    virtual-host: /leyou
+  redis:
+    host: 192.168.80.130
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/hm49
+    username: root
+    password:
+    hikari:
+      max-lifetime: 28830000 # 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQL wait_timeout参数（show variables like '%timeout%';）
+      maximum-pool-size: 9 # 连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 5 # 5秒钟发送一次心跳
+    lease-expiration-duration-in-seconds: 10 # 10秒不发送就过期
+mybatis:
+  type-aliases-package: com.leyou.user.pojo
